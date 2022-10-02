@@ -17,6 +17,40 @@ public class Task1 {
      * @return - the length of the last word in the string.
      */
     public int lengthOfLastWord(String str) {
-        return 0;
+        /*
+          Check on null and one word string before processing
+        */
+        if (str == null) {
+            return 0;
+        }
+
+        if (!str.contains(" ")) {
+            return str.length();
+        }
+
+        /*
+          Reverse for find last word
+         */
+        StringBuilder builder = new StringBuilder(str);
+        builder.reverse();
+        String reversed = builder.toString();
+
+        int length = 0;
+        int lastLength =0;
+
+        /*
+          Iterate until find first word in reversed string
+         */
+        for (int i=0; i < reversed.length() && lastLength == 0; i++) {
+            if (reversed.charAt(i) != ' ') {
+                length = length +1;
+            } else {
+                if (length != 0) {
+                    lastLength = length;
+                }
+            }
+        }
+
+        return lastLength;
     }
 }
